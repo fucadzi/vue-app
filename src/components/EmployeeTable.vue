@@ -12,20 +12,20 @@
         <tbody>
             <tr v-for="person in employees" :key="person.id">
                 <td v-if="editing === person.id">
-                    <input type="text" v-model="person.name"/>
+                    <input class="name" type="text" v-model="person.name"/>
                 </td>
-                <td v-else>{{ person.name }}</td>
+                <td v-else class="name">{{ person.name }}</td>
                 <td v-if="editing === person.id">
-                    <input type="text" v-model="person.email"/>
+                    <input class="email" type="text" v-model="person.email"/>
                 </td>
-                <td v-else>{{ person.email }}</td>
+                <td v-else class="email">{{ person.email }}</td>
                 <td v-if="editing === person.id">
-                    <button @click="editEmployee(person)">Save</button>
-                    <button @click="cancelEdit(person)" >Cancel</button>
+                    <button class="save" @click="editEmployee(person)">Save</button>
+                    <button class="cancel" @click="cancelEdit(person)" >Cancel</button>
                 </td>
                 <td v-else>
-                    <button @click="editMode(person)">Edit</button>
-                    <button @click="$emit('delete:employee', person.id)">Delete</button>
+                    <button class="edit" @click="editMode(person)">Edit</button>
+                    <button class="delete" @click="$emit('delete:employee', person.id)">Delete</button>
                 </td>
             </tr>
         </tbody>
@@ -46,7 +46,6 @@
         },
         methods: {
             editMode(employee) {
-                console.log('starting edit mode');
                 this.chachedEmployee = Object.assign({}, employee);
                 this.editing = employee.id;
             },
@@ -67,5 +66,4 @@
     button {
         margin-right: 10px;
     }
-
 </style>
