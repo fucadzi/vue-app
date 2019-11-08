@@ -2,13 +2,13 @@
     <div id="employee-form">
         <form @submit.prevent="handleSubmit">
             <label>Employee name</label>
-            <input v-model="empl.name" 
+            <input class="form-name" v-model="empl.name" 
                 type="text" 
                 @focus="clearStatus" 
                 :class="{ 'has-error': submitting && invalidName }"
                 ref="name" />
             <label>Employee Email</label>
-            <input v-model="empl.email" type="text" @focus="clearStatus" :class="{ 'has-error': submitting && invalidEmail }" />
+            <input class="form-email" v-model="empl.email" type="text" @focus="clearStatus" :class="{ 'has-error': submitting && invalidEmail }" />
 
             <p v-if="error && submitting" class="error-message">
                 Please fill out all required fields
@@ -17,7 +17,7 @@
                 Employee added
             </p>
 
-            <button>Add Employee</button>
+            <button class="form-submit">Add Employee</button>
         </form>
     </div>
 </template>
@@ -37,6 +37,7 @@ export default {
     },
     methods: {
         handleSubmit() {
+            console.log('Handling submit');
             this.submitting = true;
             this.clearStatus();
             

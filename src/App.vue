@@ -32,7 +32,6 @@
           let response = await fetch('https://jsonplaceholder.typicode.com/users');
           let data = await response.json();
           this.list = data;
-          console.log(this.list);
         } catch (error){
           console.log(error);
         }
