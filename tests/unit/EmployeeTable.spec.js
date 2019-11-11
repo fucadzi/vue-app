@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
-import EmployeeTable from '@/components/EmployeeTable.vue'
+import { mount } from '@vue/test-utils';
+import EmployeeTable from '@/components/EmployeeTable.vue';
 
 describe('EmployeeTable.vue', () => {
     describe('Displaying employee list', () => {
@@ -11,7 +11,7 @@ describe('EmployeeTable.vue', () => {
                     email: 'jon@example.com'
                 }
             ];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
@@ -31,7 +31,7 @@ describe('EmployeeTable.vue', () => {
                     email: 'jon@example.com'
                 }
             ];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
@@ -46,7 +46,7 @@ describe('EmployeeTable.vue', () => {
 
         it('If employee array is empty, display message', () => {
             const employees = [];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
@@ -67,7 +67,7 @@ describe('EmployeeTable.vue', () => {
                     email: 'jon@example.com'
                 }
             ];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
@@ -85,7 +85,7 @@ describe('EmployeeTable.vue', () => {
                     email: 'jon@example.com'
                 }
             ];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
@@ -106,7 +106,7 @@ describe('EmployeeTable.vue', () => {
                     email: 'jon@example.com'
                 }
             ];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
@@ -134,7 +134,7 @@ describe('EmployeeTable.vue', () => {
                     email: 'jon@example.com'
                 }
             ];
-            const wrapper = shallowMount(EmployeeTable, {
+            const wrapper = mount(EmployeeTable, {
                 propsData: {
                     employees
                 }
