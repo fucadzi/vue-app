@@ -14,11 +14,11 @@
                 <td v-if="editing === person.id">
                     <input class="name" type="text" v-model="person.name"/>
                 </td>
-                <td v-else class="name">{{ person.name }}</td>
+                <td v-else class="name" @click="showDetails(person.id)" >{{ person.name }}</td>
                 <td v-if="editing === person.id">
                     <input class="email" type="text" v-model="person.email"/>
                 </td>
-                <td v-else class="email">{{ person.email }}</td>
+                <td v-else class="email" @click="showDetails(person.id)">{{ person.email }}</td>
                 <td v-if="editing === person.id">
                     <button class="save" @click="editEmployee(person)">Save</button>
                     <button class="cancel" @click="cancelEdit(person)" >Cancel</button>
@@ -45,6 +45,14 @@
             }
         },
         methods: {
+            showDetails(id) {
+                this.$router.push({
+                    name: 'user',
+                    params: {
+                        id: id
+                    }
+                });
+            },
             editMode(employee) {
                 this.chachedEmployee = Object.assign({}, employee);
                 this.editing = employee.id;
