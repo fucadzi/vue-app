@@ -26,8 +26,11 @@ export default {
           }
         );
         let result = await response.json();
-        console.log(result);
+        console.log('result is ', result);
         // this.list = [...this.list, result];
+
+        this.$router.push({name:'list', params:{result}});
+
       } catch (error) {
         console.log(error);
       }

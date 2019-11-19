@@ -37,7 +37,6 @@ export default {
     },
     methods: {
         handleSubmit() {
-            console.log('Handling submit');
             this.submitting = true;
             this.clearStatus();
             

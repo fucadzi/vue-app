@@ -18,6 +18,7 @@ export default new Router({
       path: '/list',
       name: 'list',
       component: EmployeeList,
+      props: true,
       children: [
         {
           path: '/list/add',
