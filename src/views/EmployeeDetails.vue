@@ -32,7 +32,6 @@ export default {
     },
     methods: {
         fetchData: async function() {
-            console.log('fetching data'); 
             this.loading = true;
             try{
                 const id = this.$route.params.id;

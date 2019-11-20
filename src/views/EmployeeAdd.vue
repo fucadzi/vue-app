@@ -15,25 +15,14 @@ export default {
   },
 
   methods: {
-    async addEmployee(data) {
-      try {
-        let response = await fetch(
-          "https://jsonplaceholder.typicode.com/users",
-          {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: { "Content-type": "application/json; charset=UTF-8" }
-          }
-        );
-        let result = await response.json();
-        console.log('result is ', result);
-        // this.list = [...this.list, result];
-
-        this.$router.push({name:'list', params:{result}});
-
-      } catch (error) {
-        console.log(error);
-      }
+    addEmployee(data) {
+        this.$axios.post("https://jsonplaceholder.typicode.com/users", data)
+            .then((response) => {
+                this.$store.commit('addEmployee', response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
   }
 };

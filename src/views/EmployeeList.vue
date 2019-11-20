@@ -4,7 +4,7 @@
         <router-link to="/list/add">Add new employee</router-link>
         <router-view />
         <employee-table
-            :employees="list"
+            :employees="this.$store.state.list"
             @delete:employee="deleteEmployee"
             @edit:employee="editEmployee"
             />
@@ -26,11 +26,8 @@
         },
         data() {
             return {
-            list: []
+                list: []
             };
-        },
-        updated() {
-            console.log('passed props are ', this.props, this.$router.history.current.params);
         },
         mounted() {
             this.getEmployees();
@@ -43,6 +40,7 @@
                     );
                     let data = await response.json();
                     this.list = data;
+                    this.$store.state.list = data;
 
                 } catch (error) {
                     console.log(error);
@@ -54,30 +52,24 @@
                     await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
                     method: "DELETE"
                     });
-                    this.list = this.list.filter(list => list.id !== id);
+                    this.$store.commit('deleteEmployee', id);
                 } catch (error) {
                     console.log(error);
                 }
             },
 
-            async editEmployee(id, updatedPerson) {
-                try {
-                    let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/users/${id}`,
-                    {
-                        method: "PUT",
-                        body: JSON.stringify(updatedPerson),
-                        headers: { "Content-type": "application/json; charset=UTF-8" }
-                    }
-                    );
-                    let newPerson = await response.json();
+            editEmployee(id, updatedPerson) {
 
-                    this.list = this.list.map(person =>
-                    person.id === id ? newPerson : person
-                    );
-                } catch (error) {
-                    console.log(error);
-                }
+                let body = JSON.stringify(updatedPerson);
+                this.$axios({
+                        method: 'put',
+                        url: `https://jsonplaceholder.typicode.com/users/${id}`,
+                        data: updatedPerson
+                    }).then((result) => {
+                        this.$store.commit('editEmployee', result.data);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
             }
         }
     };
